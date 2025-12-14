@@ -21,15 +21,15 @@ Bu proje, aşağıdaki görev dağılımı ile işbirliği içinde tamamlanmış
 
 ## 🛠️ Analiz Akışı ve Kullanılan Yöntemler
 
-### 1. Veri Ön İşleme (Dilruba)
+### 1. Veri Ön İşleme 
 * **Kategorik Özellik Üretimi:** Ortam Sıcaklığı (`AT`) ve Basınç (`AP`) verilerinden yeni kategori seviyeleri (`Low`, `High`, vb.) oluşturulmuştur.
 * **Normalizasyon:** Model eğitimine hazırlık için sayısal sütunlara Min-Max Normalizasyonu uygulanmıştır.
 
-### 2. Keşifçi Veri Analizi (Buse)
+### 2. Keşifçi Veri Analizi 
 * **Korelasyon:** Net Elektrik Çıkışı (`PE`) ile özellikler (`AT`, `V`) arasında güçlü **negatif** ilişkiler gözlemlenmiştir. 
 * **Dağılım:** Tüm değişkenlerin dağılımı Histogram ve Kutu Grafikleriyle incelenmiştir.
 
-### 3. Modelleme (Aleyna)
+### 3. Modelleme 
 * **Model:** Regresyon görevi için **Doğrusal Regresyon (Linear Regression)** modeli seçilmiştir.
 * **Performans:** Model, %80 Eğitim / %20 Test ayrımı yapılarak eğitilmiş ve aşağıdaki metriklerle başarılı bulunmuştur:
     * **R² Skoru:** Yaklaşık 0.92 (Model, verideki varyansın %92'sini açıklayabilmektedir).
