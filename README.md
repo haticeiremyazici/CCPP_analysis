@@ -1,3 +1,43 @@
-💡 KOMBİNE ÇEVRİM ENERJİ SANTRALİ PERFORMANS ANALİZİ VE TAHMİNİ
-Bu proje, bir Kombine Çevrim Enerji Santrali'nin (CCPP) atmosferik koşullarını (Sıcaklık, Vakum, Basınç, Nem) kullanarak Net Elektrik Çıkışını (PE) tahmin eden bir Makine Öğrenmesi modeli geliştirmeyi ve veriyi kapsamlı bir şekilde analiz etmeyi amaçlamaktadır.
-🧑‍💻 Takım ve Görev DağılımıÜye AdıGörev AlanıAçıklamaDilrubaPandas ve NumPyVeri yükleme, ön işleme, yeni özellik oluşturma ve ölçekleme.BuseGrafiklerKeşifçi Veri Analizi (EDA), dağılım ve ilişki görselleştirmeleri.AleynaMakine ÖğrenmesiDoğrusal Regresyon modelini kurma, eğitme ve değerlendirme.İremYorumlama SatırlarıProjenin tamamına açıklayıcı yorum satırları ekleyerek kod anlaşılırlığını artırma.⚙️ Proje Akışı ve Kod BölümleriProje, temel olarak üç ana bölüme ayrılmıştır ve kodlar bu sırayla çalıştırılmalıdır.BÖLÜM 1: Veri Ön İşleme (Dilruba)Bu aşamada veri setinin temizliği ve yapısal düzenlemeleri yapılmıştır.Veri Yükleme: CCPP_data.csv dosyası yüklenmiştir.Yeni Özellik Oluşturma: Ortam sıcaklığı (AT) ve Basınç (AP) değişkenlerinden, AT_level ve AP_level adında kategorik özellikler türetilmiştir.Ölçekleme: Makine öğrenmesi modeli hazırlığı için sayısal özelliklere Min-Max Normalizasyonu uygulanmıştır.Çıktı: Temizlenmiş ve işlenmiş veri, cleaned_CCPP_final.csv dosyası olarak kaydedilmiştir.BÖLÜM 2: Görselleştirme ve EDA (Buse)Bu bölümde veri setindeki ilişkiler ve değişken dağılımları incelenmiştir.Dağılım Analizleri: Hedef değişken PE ve tüm özellikler (AT, V, AP, RH) için Histogram ve Kutu Grafikleri çizilerek dağılım ve aykırı değerler kontrol edilmiştir.Korelasyon Analizi: Tüm özellikler arası ilişki, Isı Haritası (Heatmap) ile görselleştirilmiştir.Bulgu: Elektrik Çıkışı (PE), Ortam Sıcaklığı (AT) ve Egzoz Vakumu (V) ile güçlü negatif ilişki sergilemektedir (Sıcaklık/Vakum arttıkça PE düşer).İlişki Grafikleri: AT vs PE ve V vs PE olmak üzere temel ilişki saçılım grafikleri (Scatter Plot) çizilmiştir.BÖLÜM 3: Makine Öğrenmesi (Aleyna)Bu bölümde, enerji çıkışını tahmin etmek için bir regresyon modeli eğitilmiştir.Model: Doğrusal Regresyon (Linear Regression) kullanılmıştır.Eğitim: Veri seti %80 Eğitim ve %20 Test kümelerine ayrılmıştır.Değerlendirme: Modelin tahmin performansı, test seti üzerinde aşağıdaki metriklerle ölçülmüştür:Metrik AdıTanımSonuç Değer (Örnek)RMSE (Karesel Hatanın Karekökü)Hatanın mutlak büyüklüğü.$\approx 4.0$R² Skoru (Açıklanan Varyans)Modelin verideki varyansı açıklama yüzdesi. (1.0 en iyisidir)$\approx 0.92$Model Görselleştirmeleri:Gerçek Değerler vs Tahmin Edilen Değerler GrafiğiHata Dağılımı (Histogram) ile modelin hatalarının normal dağılıma uygunluğu kontrol edilmiştir.🛠️ Nasıl ÇalıştırılırOrtam: Bu projeyi Google Colab veya Jupyter Notebook'ta çalıştırın.Veri: CCPP_data.csv dosyasını çalışma dizinine yükleyin.Çalıştırma: Colab dosyasındaki tüm hücreleri sırasıyla (Bölüm 1'den Bölüm 3'e doğru) çalıştırın.İnceleme: Her bölümde yer alan yorum satırlarını ve çıktıları inceleyerek projenin akışını takip edebilirsiniz.
+# 💡 Kombine Çevrim Enerji Santrali (CCPP) Performans Analizi ve Tahmini
+
+Bu depo, dört temel atmosferik koşul (Sıcaklık, Vakum, Basınç, Nem) kullanarak bir Kombine Çevrim Enerji Santrali'nin **Net Elektrik Çıkışını (PE)** tahmin eden bir Doğrusal Regresyon modelinin geliştirilmesini içerir. Proje, veri bilimindeki temel adımları (Ön İşleme, Keşifçi Analiz ve Modelleme) kapsamaktadır.
+
+## 👥 Takım ve Görev Dağılımı
+
+Bu proje, aşağıdaki görev dağılımı ile işbirliği içinde tamamlanmıştır:
+
+| Üye Adı | Görev Alanı | Açıklama |
+| :--- | :--- | :--- |
+| **Dilruba** | Pandas ve NumPy (Veri Ön İşleme) | Veri temizliği, özellik mühendisliği (kategorik değişkenler) ve ölçekleme. |
+| **Buse** | Grafikler (EDA) | Dağılım, korelasyon ve değişkenler arası ilişki görselleştirmeleri. |
+| **Aleyna** | Makine Öğrenmesi | Doğrusal Regresyon modelinin kurulması, eğitilmesi ve metriklerle değerlendirilmesi. |
+| **İrem** | Yorumlama Satırları | Projenin tamamına açıklayıcı yorum satırları ekleyerek kod anlaşılırlığını sağlama. |
+
+## 📁 Proje Dosyaları
+
+* **`CCPP_Analysis.ipynb`**: Projenin tamamını içeren ana Jupyter Notebook dosyasıdır (Bu depodaki tüm kod bu dosyadadır).
+* **`CCPP_data.csv`**: Kullanılan orijinal ham veri seti.
+* **`README.md`**: Bu açıklama dosyası.
+
+## 🛠️ Analiz Akışı ve Kullanılan Yöntemler
+
+### 1. Veri Ön İşleme (Dilruba)
+* **Kategorik Özellik Üretimi:** Ortam Sıcaklığı (`AT`) ve Basınç (`AP`) verilerinden yeni kategori seviyeleri (`Low`, `High`, vb.) oluşturulmuştur.
+* **Normalizasyon:** Model eğitimine hazırlık için sayısal sütunlara Min-Max Normalizasyonu uygulanmıştır.
+
+### 2. Keşifçi Veri Analizi (Buse)
+* **Korelasyon:** Net Elektrik Çıkışı (`PE`) ile özellikler (`AT`, `V`) arasında güçlü **negatif** ilişkiler gözlemlenmiştir. 
+* **Dağılım:** Tüm değişkenlerin dağılımı Histogram ve Kutu Grafikleriyle incelenmiştir.
+
+### 3. Modelleme (Aleyna)
+* **Model:** Regresyon görevi için **Doğrusal Regresyon (Linear Regression)** modeli seçilmiştir.
+* **Performans:** Model, %80 Eğitim / %20 Test ayrımı yapılarak eğitilmiş ve aşağıdaki metriklerle başarılı bulunmuştur:
+    * **R² Skoru:** Yaklaşık 0.92 (Model, verideki varyansın %92'sini açıklayabilmektedir).
+    * **RMSE:** Düşük bir hata payı ile tahminlerin başarılı olduğu görülmüştür.
+
+### 🚀 Nasıl Çalıştırılır?
+
+1.  Bu depoyu bilgisayarınıza **clone** yapın veya **zip** olarak indirin.
+2.  `CCPP_data.csv` dosyasının, `CCPP_Analysis.ipynb` dosyasıyla aynı klasörde olduğundan emin olun.
+3.  Anaconda Navigator veya Visual Studio Code üzerinden **`CCPP_Analysis.ipynb`** dosyasını açın.
+4.  Dosyadaki tüm hücreleri sırasıyla (Yukarıdan aşağıya) çalıştırın.
